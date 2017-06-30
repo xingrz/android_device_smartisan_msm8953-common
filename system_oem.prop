@@ -81,3 +81,6 @@ persist.radio.vrte_logic=1
 ro.com.android.dataroaming=false
 ro.radio.apn.protocal=IPV4V6
 ro.ril.ecclist=911,112,000,08,110,118,119,999,120,122
+
+# Time
+persist.vendor.delta_time.enable=true
