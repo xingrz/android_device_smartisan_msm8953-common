@@ -39,3 +39,6 @@ service ifaad /system/bin/ifaad
     class late_start
     user  system
     group system
+
+on property:sys.boot_completed=1
+    restart cameraserver
