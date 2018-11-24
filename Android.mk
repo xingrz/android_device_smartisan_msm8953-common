@@ -81,14 +81,6 @@ $(WCNSS_NV_SYMLINK): $(LOCAL_INSTALLED_MODULE)
 
 ALL_DEFAULT_INSTALLED_MODULES += $(WCNSS_INI_SYMLINK) $(WCNSS_NV_SYMLINK)
 
-PRONTO_SYMLINK := $(TARGET_OUT)/lib/modules/wlan.ko
-$(PRONTO_SYMLINK): $(LOCAL_INSTALLED_MODULE)
-	@echo "PRONTO link: $@"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf /system/lib/modules/pronto/pronto_wlan.ko $@
-ALL_DEFAULT_INSTALLED_MODULES += $(PRONTO_SYMLINK)
-
 GOODIXFP_IMGS := goodixfp.b00 goodixfp.b01 goodixfp.b02 goodixfp.b03 \
                  goodixfp.b04 goodixfp.b05 goodixfp.b06 goodixfp.mdt
 GOODIXFP_SYMLINK := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(GOODIXFP_IMGS)))
