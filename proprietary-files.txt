@@ -1631,4 +1631,3 @@ vendor/lib/mediadrm/libwvdrmengine.so
 etc/firmware/wlan/prima/WCNSS_cfg.dat
 etc/wifi/WCNSS_qcom_wlan_nv.bin
 etc/wifi/WCNSS_wlan_dictionary.dat
-lib/modules/pronto/pronto_wlan.ko
