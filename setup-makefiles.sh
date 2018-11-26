@@ -43,7 +43,6 @@ write_headers
 
 write_makefiles "$MY_DIR"/proprietary-files.txt
 write_makefiles "$MY_DIR"/proprietary-files-qc.txt
-write_makefiles "$MY_DIR"/proprietary-files-qc-perf.txt
 
 # Finish
 write_footers
