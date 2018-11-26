@@ -222,13 +222,15 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.msm8953 \
+    android.hardware.gnss@1.0-impl-qti \
+    android.hardware.gnss@1.0-service-qti \
+    libgnss \
     libgnsspps \
     libgps.utils \
     libloc_core \
-    libloc_eng \
     libloc_pla \
-    libloc_stub
+    libloc_stub \
+    liblocation_api
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/apdr.conf:$(TARGET_COPY_OUT_VENDOR)/etc/apdr.conf \
