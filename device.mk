@@ -23,6 +23,8 @@
 
 $(call inherit-product, vendor/smartisan/oscar/oscar-vendor.mk)
 
+PRODUCT_VENDOR_MOVE_ENABLED := true
+
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
@@ -100,7 +102,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    audiod \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio@2.0-service \
+    android.hardware.audio.effect@2.0-impl \
     audio.a2dp.default \
     audio.r_submix.default \
     audio.usb.default \
@@ -155,11 +159,19 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
+    android.hardware.bluetooth@1.0-impl \
+    android.hardware.bluetooth@1.0-service \
+    libbt-vendor \
     libbthost_if
 
 # Camera
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/camera/camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/camera_config.xml
+
+PRODUCT_PACKAGES += \
+    android.hardware.camera.provider@2.4-impl \
+    android.hardware.camera.provider@2.4-service \
+    vendor.qti.hardware.camera.device@1.0
 
 PRODUCT_PACKAGES += \
     Snap
@@ -172,16 +184,41 @@ PRODUCT_PACKAGES += \
 
 # Display
 PRODUCT_PACKAGES += \
+    android.hardware.configstore@1.0-service \
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.allocator@2.0-service \
+    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.graphics.composer@2.1-service \
+    android.hardware.graphics.mapper@2.0-impl \
+    android.hardware.memtrack@1.0-impl \
+    android.hardware.memtrack@1.0-service \ \
+    vendor.display.config@1.0 \
+    vendor.display.config@1.0_vendor \
     copybit.msm8953 \
     gralloc.msm8953 \
     hwcomposer.msm8953 \
     memtrack.msm8953 \
+    libdisplayconfig \
+    libgenlock \
+    libhwc2on1adapter \
     liboverlay \
+    libqdMetaData \
+    libqdMetaData.system \
     libtinyxml
+
+# DRM
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl \
+    android.hardware.drm@1.0-service
 
 # For android_filesystem_config.h
 PRODUCT_PACKAGES += \
     fs_config_files
+
+# Gatekeeper
+PRODUCT_PACKAGES += \
+    android.hardware.gatekeeper@1.0-impl \
+    android.hardware.gatekeeper@1.0-service
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -200,6 +237,18 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/izat.conf:$(TARGET_COPY_OUT_VENDOR)/etc/izat.conf \
     $(LOCAL_PATH)/gps/etc/sap.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sap.conf
 
+# Healthd
+PRODUCT_PACKAGES += \
+    android.hardware.health@1.0-convert \
+    android.hardware.health@1.0-impl \
+    android.hardware.health@1.0-service
+
+# HIDL
+PRODUCT_PACKAGES += \
+    android.hidl.base@1.0 \
+    android.hidl.manager@1.0 \
+    android.hidl.manager@1.0-java
+
 # IFAA (Fingerprint support for Alipay)
 PRODUCT_BOOT_JARS += \
     ifaa_fw
@@ -207,9 +256,6 @@ PRODUCT_BOOT_JARS += \
 # Input
 PRODUCT_PACKAGES += \
     KeyHandlerOscar
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/keylayout/betterlife-blfp.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/betterlife-blfp.kl
 
 # IPv6
 PRODUCT_PACKAGES += \
@@ -224,13 +270,18 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
 
+# Keymaster / Keystore
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0-impl \
+    android.hardware.keymaster@3.0-service
+
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8953
 
 # LiveDisplay native
 PRODUCT_PACKAGES += \
-    libjni_livedisplay
+    vendor.mokee.livedisplay@1.0-service-sdm
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -246,6 +297,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
     libextmedia_jni \
+    libhypv_intercept \
     libOmxAacEnc \
     libOmxAmrEnc \
     libOmxCore \
@@ -257,7 +309,7 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    power.msm8953
+    android.hardware.power@1.1-service-qti
 
 # QMI
 PRODUCT_PACKAGES += \
@@ -267,14 +319,27 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/init,)
 
+# RenderScript HAL
+PRODUCT_PACKAGES += \
+    android.hardware.renderscript@1.0-impl
+
+# RCS
+PRODUCT_PACKAGES += \
+    rcs_service_aidl \
+    rcs_service_aidl.xml \
+    rcs_service_api \
+    rcs_service_api.xml
+
 # RIL
 PRODUCT_PACKAGES += \
+    ims-ext-common \
     librmnetctl \
     libxml2 \
     libprotobuf-cpp-full
 
 # Sensors
 PRODUCT_PACKAGES += \
+    android.hardware.sensors@1.0-impl \
     sensors.msm8953
 
 # SOTER (Fingerprint support for WeChat Payment)
@@ -284,16 +349,50 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     soter
 
+# Telephony
+PRODUCT_PACKAGES += \
+    telephony-ext
+
+PRODUCT_BOOT_JARS += \
+    telephony-ext
+
+# TextClassifier smart selection model files
+PRODUCT_PACKAGES += \
+    textclassifier.smartselection.bundle1
+
+# Thermal
+PRODUCT_PACKAGES += \
+    android.hardware.thermal@1.0-impl \
+    android.hardware.thermal@1.0-service \
+    thermal.msm8953
+
+# USB
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service \
+    com.android.future.usb.accessory
+
+# Vendor seccomp policy files for media components:
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/seccomp_policy/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy \
+    $(LOCAL_PATH)/seccomp_policy/mediaextractor-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediaextractor.policy
+
+# Vibrator
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator@1.0-service.mokee
+
+# VNDK-SP:
+PRODUCT_PACKAGES += \
+    vndk-sp
+
 # Wifi
 PRODUCT_PACKAGES += \
-    ipacm \
-    ipacm-diag \
-    IPACM_cfg.xml \
+    android.hardware.wifi@1.0-service \
+    hostapd \
+    hostapd_cli \
     libqsap_sdk \
     libQWiFiSoftApCfg \
-    libwpa_client \
-    hostapd \
-    dhcpcd.conf \
+    libwifi-hal-qcom \
+    wificond \
     wcnss_service \
     wpa_supplicant \
     wpa_supplicant.conf
