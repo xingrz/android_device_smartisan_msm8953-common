@@ -334,6 +334,7 @@ PRODUCT_PACKAGES += \
 
 # RIL
 PRODUCT_PACKAGES += \
+    qti-telephony-common \
     ims-ext-common \
     librmnetctl \
     libxml2 \
