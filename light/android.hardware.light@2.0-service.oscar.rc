@@ -1,0 +1,20 @@
+on init
+    chown system system /sys/class/leds/blue/brightness
+    chown system system /sys/class/leds/blue/blink
+    chown system system /sys/class/leds/blue/ramp_step_ms
+    chown system system /sys/class/leds/blue/duty_pcts
+    chown system system /sys/class/leds/blue/start_idx
+    chown system system /sys/class/leds/blue/pause_lo
+    chown system system /sys/class/leds/blue/pause_hi
+    chmod 0660 /sys/class/leds/blue/brightness
+    chmod 0660 /sys/class/leds/blue/blink
+    chmod 0660 /sys/class/leds/blue/ramp_step_ms
+    chmod 0660 /sys/class/leds/blue/duty_pcts
+    chmod 0660 /sys/class/leds/blue/start_idx
+    chmod 0660 /sys/class/leds/blue/pause_lo
+    chmod 0660 /sys/class/leds/blue/pause_hi
+
+service light-hal-2-0 /vendor/bin/hw/android.hardware.light@2.0-service.oscar
+    class hal
+    user system
+    group system
