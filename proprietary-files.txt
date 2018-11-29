@@ -1,23 +1,23 @@
 # Bluetooth
-lib/libaptXHD_encoder.so
-lib/libaptXScheduler.so
-lib/libaptX_encoder.so
+lib/libaptXHD_encoder.so:vendor/lib/libaptXHD_encoder.so
+lib/libaptXScheduler.so:vendor/lib/libaptXScheduler.so
+lib/libaptX_encoder.so:vendor/lib/libaptX_encoder.so
 
 # Bluetooth firmware
-etc/firmware/nvm_tlv.bin
-etc/firmware/nvm_tlv_1.3.bin
-etc/firmware/nvm_tlv_2.1.bin
-etc/firmware/nvm_tlv_3.0.bin
-etc/firmware/nvm_tlv_3.2.bin
-etc/firmware/rampatch_tlv.img
-etc/firmware/rampatch_tlv_1.3.tlv
-etc/firmware/rampatch_tlv_2.1.tlv
-etc/firmware/rampatch_tlv_3.0.tlv
-etc/firmware/rampatch_tlv_3.2.tlv
+etc/firmware/nvm_tlv.bin:vendor/firmware/nvm_tlv.bin
+etc/firmware/nvm_tlv_1.3.bin:vendor/firmware/nvm_tlv_1.3.bin
+etc/firmware/nvm_tlv_2.1.bin:vendor/firmware/nvm_tlv_2.1.bin
+etc/firmware/nvm_tlv_3.0.bin:vendor/firmware/nvm_tlv_3.0.bin
+etc/firmware/nvm_tlv_3.2.bin:vendor/firmware/nvm_tlv_3.2.bin
+etc/firmware/rampatch_tlv.img:vendor/firmware/rampatch_tlv.img
+etc/firmware/rampatch_tlv_1.3.tlv:vendor/firmware/rampatch_tlv_1.3.tlv
+etc/firmware/rampatch_tlv_2.1.tlv:vendor/firmware/rampatch_tlv_2.1.tlv
+etc/firmware/rampatch_tlv_3.0.tlv:vendor/firmware/rampatch_tlv_3.0.tlv
+etc/firmware/rampatch_tlv_3.2.tlv:vendor/firmware/rampatch_tlv_3.2.tlv
 
 # HBTP
-etc/firmware/hbtp/hbtpcfg.dat
-etc/firmware/hbtp/qtc800s_dsp.bin
+etc/firmware/hbtp/hbtpcfg.dat:vendor/firmware/hbtp/hbtpcfg.dat
+etc/firmware/hbtp/qtc800s_dsp.bin:vendor/firmware/hbtp/qtc800s_dsp.bin
 
 # IFAA (Fingerprint support for Alipay)
 -framework/ifaa_fw.jar
@@ -29,7 +29,7 @@ lib64/libifaa_daemon.so
 lib64/libifaa_jni.so
 
 # USB firmware
-etc/firmware/ice40.bin
+etc/firmware/ice40.bin:vendor/firmware/ice40.bin
 
 # Wi-Fi
-etc/firmware/wlan/prima/WCNSS_cfg.dat
+etc/firmware/wlan/prima/WCNSS_cfg.dat:vendor/firmware/wlan/prima/WCNSS_cfg.dat
