@@ -201,7 +201,8 @@ BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_ROOT_EXTRA_SYMLINKS := \
     /vendor/dsp:/dsp \
     /vendor/firmware_mnt:/firmware \
-    /vendor/bt_firmware:/bt_firmware
+    /vendor/bt_firmware:/bt_firmware \
+    /mnt/vendor/persist:/persist
 TARGET_USERIMAGES_USE_EXT4 := true
 
 # Power
