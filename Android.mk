@@ -25,7 +25,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_DEVICE),oscar)
+ifneq ($(filter odin oscar,$(TARGET_DEVICE)),)
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
 include $(CLEAR_VARS)
@@ -84,26 +84,5 @@ $(WCNSS_INI_SYMLINK): $(LOCAL_INSTALLED_MODULE)
 	@mkdir -p $(dir $@)
 	@rm -rf $@
 	$(hide) ln -sf /data/misc/wifi/$(notdir $@) $@
-
-WCNSS_NV_FILES := WCNSS_qcom_wlan_nv.bin WCNSS_wlan_dictionary.dat
-WCNSS_NV_SYMLINK := $(addprefix $(TARGET_OUT_VENDOR)/firmware/wlan/prima/,$(notdir $(WCNSS_NV_FILES)))
-$(WCNSS_NV_SYMLINK): $(LOCAL_INSTALLED_MODULE)
-	@echo "WCNSS NV link: $@"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf /system/etc/wifi/$(notdir $@) $@
-
-ALL_DEFAULT_INSTALLED_MODULES += $(WCNSS_INI_SYMLINK) $(WCNSS_NV_SYMLINK)
-
-GOODIXFP_IMGS := goodixfp.b00 goodixfp.b01 goodixfp.b02 goodixfp.b03 \
-                 goodixfp.b04 goodixfp.b05 goodixfp.b06 goodixfp.mdt
-GOODIXFP_SYMLINK := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(GOODIXFP_IMGS)))
-$(GOODIXFP_SYMLINK): $(LOCAL_INSTALLED_MODULE)
-	@echo "Goodix images link: $@"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf /firmware/image/$(notdir $@) $@
-
-ALL_DEFAULT_INSTALLED_MODULES += $(GOODIXFP_SYMLINK)
 
 endif

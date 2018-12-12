@@ -15,6 +15,10 @@ persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
 ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
+#
+# Set network mode to (T/L/G/W/1X/EVDO, T/G/W/L) for 7+5 mode device on DSDS mode
+#
+# ro.telephony.default_network=22,20
 
 debug.sf.enable_hwc_vds=1
 debug.sf.hw=0
@@ -42,11 +46,9 @@ mm.enable.smoothstreaming=true
 mmp.enable.3g2=true
 media.aac_51_output_enabled=true
 av.debug.disable.pers.cache=1
-
+# media.settings.xml=/vendor/etc/media_profiles_vendor.xml
 #codecs:(PARSER_)AAC AC3 AMR_NB AMR_WB ASF AVI DTS FLV 3GP 3G2 MKV MP2PS MP2TS MP3 OGG QCP WAV FLAC AIFF APE
 mm.enable.qcom_parser=1048575
-
-persist.media.treble_omx=false
 
 #
 # system props for the data modules
@@ -58,16 +60,8 @@ persist.data.mode=concurrent
 #system props for time-services
 persist.timed.enable=true
 
-#
-# system prop for opengles version
-#
-# 196608 is decimal for 0x30000 to report major/minor versions as 3/0
-# 196609 is decimal for 0x30001 to report major/minor versions as 3/1
-# 196610 is decimal for 0x30002 to report major/minor versions as 3/2
-ro.opengles.version=196610
-
 # System property for cabl
-ro.qualcomm.cabl=0
+# ro.qualcomm.cabl=2
 
 # Property to enable display default color mode
 vendor.display.enable_default_color_mode=1
@@ -81,23 +75,6 @@ telephony.lteOnCdmaDevice=1
 # System props for bluetooh
 # System prop to turn on hfp client
 bluetooth.hfp.client=1
-
-# SMARTISAN_BEGIN (CCM2005:CDMA SMS sent over TCH)
-# 2017-5-15 liulu:create the feature M0164744
-# 2017-10-11 guochenggang: porting to osborn-common M0191861
-# CDMA sms sent over TCH M0164744
-persist.radio.force_on_dc=true
-# SMARTISAN_END (CCM2005:CDMA SMS sent over TCH)
-
-# SMARTISAN_BEGIN (CCM2008: Set property ignore_dom_time)
-# 2018-04-28 liulu: set ignore_dom_time as 5 sec
-persist.radio.ignore_dom_time=5
-# SMARTISAN_END (CCM2008: Set property ignore_dom_time)
-
-# SMARTISAN_BEGIN (CCM5021:Enable modem save power property)
-# 2017-12-27 liulu:enable the property M0213013
-persist.radio.add_power_save=1
-# SMARTISAN_END (CCM5021:Enable modem save power property)
 
 #Simulate sdcard on /data/media
 #
@@ -127,8 +104,8 @@ debug.enable.gamed=0
 #property to enable narrow search range for video encoding
 vendor.vidc.enc.disable_bframes=1
 vendor.vidc.disable.split.mode=1
-vendor.vidc.dec.downscalar_width=3840
-vendor.vidc.dec.downscalar_height=2160
+# vendor.vidc.dec.downscalar_width=1920
+# vendor.vidc.dec.downscalar_height=1088
 
 # system prop for UBWC
 video.disable.ubwc=1
@@ -194,8 +171,6 @@ ro.emmc_size=16GB
 camera.hal1.packagelist=com.skype.raider,com.google.android.talk
 vendor.camera.hal1.packagelist=com.skype.raider,com.google.android.talk
 
-# Enable RAT in operator searching result
-persist.radio.rat_on=combine
 #Enable FR27607-RIL to send ONLINE cmd in bootup
 #persist.radio.poweron_opt=1
 
@@ -212,93 +187,3 @@ vendor.camera.aux.packagelist=org.codeaurora.snapcam
 
 #set cutoff voltage to 3400mV
 ro.cutoff_voltage_mv=3400
-
-ro.config.smartisan.low_ram=true
-
-#Headset button input device name
-ro.system.headsetinput=msm8953-snd-card-mtp Button Jack
-
-#enable drm service
-drm.service.enabled=true
-
-# Default network mode
-ro.telephony.default_network=22,22
-# Ap defined ecclist
-ro.ril.ecclist=911,112,000,08,110,118,119,999,120,122
-# Redirecting party number feature
-persist.radio.redir_party_num=0
-
-#Report PS operator name for SRLTE
-persist.radio.sglte.eons_domain=ps
-# Enable report reject cause when REG rejected permanently
-persist.radio.lte_vrte_ltd=1
-# Default APN protocal
-ro.radio.apn.protocal=IPV4V6
-# Report audio codec
-persist.radio.report_codec=1
-
-#codename
-ro.product.codename=Smartisan U3
-
-# SMARTISAN_BEGIN (CCM5012:RIL CLIR RETURN)
-# 2017-09-13 hubin:added. M0186977
-persist.radio.facnotsup_as_nonw=1
-# SMARTISAN_END (CCM5012:RIL CLIR RETURN)
-
-#Enable IMS
-persist.radio.calls.on.ims=true
-persist.radio.jbims=1
-persist.radio.vrte_logic=1
-
-# leifen: enable ota feature
-persist.radio.start_ota_daemon=1
-# leifen: enable ota feature
-
-# wangchunchao: for setting display sdcard
-ro.storage.exsdcard=1
-
-#(Fancy Parser Mask) mp4,mp3
-mm.enable.fancy_parser=17
-
-# Radio
-persist.nfc.smartcard.config=SIM1,SIM2,eSE1
-keyguard.no_require_sim=true
-ro.com.android.dataroaming=false
-
-# Audio
-af.fast_track_multiplier=1
-audio.deep_buffer.media=true
-audio.dolby.ds2.enabled=true
-audio.dolby.ds2.hardbypass=true
-audio.heap.size.multiplier=7
-audio.offload.buffer.size.kb=64
-audio.offload.gapless.enabled=true
-audio.offload.min.duration.secs=30
-audio.offload.multiaac.enable=true
-audio.offload.multiple.enabled=false
-audio.offload.passthrough=false
-audio.offload.pcm.16bit.enable=true
-audio.offload.pcm.24bit.enable=true
-audio.offload.track.enable=true
-audio.offload.video=true
-audio.parser.ip.buffer.size=262144
-audio.playback.mch.downsample=true
-audio.pp.asphere.enabled=false
-audio.safx.pbe.enabled=true
-audio_hal.period_size=192
-flac.sw.decoder.24bit.support=true
-persist.audio.fluence.speaker=false
-persist.audio.fluence.voicecall=true
-persist.audio.fluence.voicerec=false
-persist.speaker.prot.enable=false
-qcom.hw.aac.encoder=true
-ro.qc.sdk.audio.fluencetype=fluence
-ro.qc.sdk.audio.ssr=false
-tunnel.audio.encode=false
-use.qti.sw.alac.decoder=true
-use.qti.sw.ape.decoder=true
-use.voice.path.for.pcm.voip=true
-voice.conc.fallbackpath=deep-buffer
-voice.playback.conc.disabled=true
-voice.record.conc.disabled=false
-voice.voip.conc.disabled=true

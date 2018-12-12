@@ -17,9 +17,6 @@
 
 set -e
 
-DEVICE=oscar
-VENDOR=smartisan
-
 INITIAL_COPYRIGHT_YEAR=2018
 
 # Load extract_utils and do some sanity checks
@@ -36,13 +33,28 @@ fi
 . "$HELPER"
 
 # Initialize the helper
-setup_vendor "$DEVICE" "$VENDOR" "$MK_ROOT"
+setup_vendor "$DEVICE_COMMON" "$VENDOR" "$MK_ROOT" true
 
 # Copyright headers and guards
-write_headers
+write_headers "odin oscar"
 
 write_makefiles "$MY_DIR"/proprietary-files.txt
 write_makefiles "$MY_DIR"/proprietary-files-qc.txt
 
 # Finish
 write_footers
+
+if [ -s "$MY_DIR"/../$DEVICE/proprietary-files.txt ]; then
+    # Reinitialize the helper for device
+    INITIAL_COPYRIGHT_YEAR="$DEVICE_BRINGUP_YEAR"
+    setup_vendor "$DEVICE" "$VENDOR" "$MK_ROOT" false
+
+    # Copyright headers and guards
+    write_headers
+
+    # The standard device blobs
+    write_makefiles "$MY_DIR"/../$DEVICE/proprietary-files.txt true
+
+    # We are done!
+    write_footers
+fi

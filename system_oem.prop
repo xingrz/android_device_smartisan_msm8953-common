@@ -1,0 +1,80 @@
+# Audio
+af.fast_track_multiplier=1
+audio.deep_buffer.media=true
+audio.offload.min.duration.secs=30
+audio.offload.video=true
+persist.vendor.audio.fluence.speaker=true
+persist.vendor.audio.fluence.voicecall=true
+persist.vendor.audio.fluence.voicerec=false
+persist.vendor.audio.speaker.prot.enable=false
+persist.vendor.bt.enable.splita2dp=false
+ro.af.client_heap_size_kbyte=7168
+ro.vendor.audio.sdk.ssr=false
+vendor.audio.dolby.ds2.enabled=false
+vendor.audio.dolby.ds2.hardbypass=false
+vendor.audio.flac.sw.decoder.24bit=true
+vendor.audio.hw.aac.encoder=true
+vendor.audio.offload.buffer.size.kb=64
+vendor.audio.offload.gapless.enabled=true
+vendor.audio.offload.multiaac.enable=true
+vendor.audio.offload.passthrough=false
+vendor.audio.offload.track.enable=true
+vendor.audio.parser.ip.buffer.size=262144
+vendor.audio.playback.mch.downsample=true
+vendor.audio.pp.asphere.enabled=false
+vendor.audio.safx.pbe.enabled=true
+vendor.audio.tunnel.encode=false
+vendor.audio.use.sw.alac.decoder=true
+vendor.audio.use.sw.ape.decoder=true
+vendor.audio_hal.period_size=192
+vendor.voice.conc.fallbackpath=deep-buffer
+vendor.voice.path.for.pcm.voip=true
+vendor.voice.playback.conc.disabled=true
+vendor.voice.record.conc.disabled=false
+vendor.voice.voip.conc.disabled=true
+
+# CABL
+ro.qualcomm.cabl=0
+
+# Display
+qemu.hw.mainkeys=1
+ro.sf.lcd_density=400
+
+# DRM
+drm.service.enabled=true
+
+# Headset
+ro.system.headsetinput=msm8953-snd-card-mtp Button Jack
+
+# Media
+media.settings.xml=/vendor/etc/media_profiles_V1_0.xml
+persist.media.treble_omx=false
+vendor.vidc.dec.downscalar_width=3840
+vendor.vidc.dec.downscalar_height=2160
+
+# OpenGL ES
+# 196608 is decimal for 0x30000 to report major/minor versions as 3/0
+# 196609 is decimal for 0x30001 to report major/minor versions as 3/1
+# 196610 is decimal for 0x30002 to report major/minor versions as 3/2
+ro.opengles.version=196610
+
+# Radio
+keyguard.no_require_sim=true
+persist.nfc.smartcard.config=SIM1,SIM2,eSE1
+persist.radio.add_power_save=1
+persist.radio.calls.on.ims=true
+persist.radio.facnotsup_as_nonw=1
+persist.radio.force_on_dc=true
+persist.radio.ignore_dom_time=5
+persist.radio.jbims=1
+persist.radio.lte_vrte_ltd=1
+persist.radio.rat_on=combine
+persist.radio.redir_party_num=0
+persist.radio.report_codec=1
+persist.radio.sglte.eons_domain=ps
+persist.radio.start_ota_daemon=1
+persist.radio.vrte_logic=1
+ro.com.android.dataroaming=false
+ro.radio.apn.protocal=IPV4V6
+ro.ril.ecclist=911,112,000,08,110,118,119,999,120,122
+ro.telephony.default_network=22,22

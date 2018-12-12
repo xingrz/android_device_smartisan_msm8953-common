@@ -30,6 +30,7 @@
 import init.carrier.rc
 
 on early-init
+    exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules audio_apr audio_adsp_loader audio_q6_notifier audio_q6 audio_usf audio_native audio_pinctrl_wcd audio_swr audio_platform audio_swr_ctrl audio_hdmi audio_wcd9xxx audio_wcd_core audio_wsa881x_analog audio_wsa881x audio_mbhc audio_stub audio_digital_cdc audio_analog_cdc audio_wcd_cpe audio_cpe_lsm audio_wcd9335 audio_machine_sdm450 audio_machine_ext_sdm450
     write /proc/sys/kernel/sched_boost 1
     mkdir /firmware 0771 system system
     mkdir /system 0777 root root
@@ -43,8 +44,6 @@ on fs
 
     mount_all /vendor/etc/fstab.qcom
     write /proc/sys/vm/swappiness 100
-
-    start time_daemon
 
     # Keeping following partitions outside fstab file. As user may not have
     # these partition flashed on the device. Failure to mount any partition in fstab file
@@ -87,16 +86,6 @@ service qcamerasvr /vendor/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet input graphics
-
-service fingerprintd /system/bin/fingerprintd
-    class late_start
-    user system
-    group system input
-
-service btlfpserver /system/bin/btlfpserver
-    class late_start
-    user system
-    group system input
 
 on init
     write /dev/stune/foreground/schedtune.sched_boost_no_override 1
@@ -216,19 +205,6 @@ on boot
     chown system system /persist/speccfg/submask
     chown system system /persist/speccfg/partition
 
-    chmod 0666 /dev/blfp
-    chmod 0666 /dev/goodix_fp
-
-    # Wifi firmware reload path
-    chown wifi wifi /sys/module/wlan/parameters/fwpath
-
-    mkdir /dev/cpuset/dex2oat
-    write /dev/cpuset/dex2oat/cpus 0-4
-    write /dev/cpuset/dex2oat/mems 0
-    chown system system /dev/cpuset/dex2oat
-    chown system system /dev/cpuset/dex2oat/tasks
-    chmod 0666 /dev/cpuset/dex2oat/tasks
-
 service wcnss-service /vendor/bin/wcnss_service
     class main
     user system
@@ -344,11 +320,6 @@ service per_proxy /vendor/bin/pm-proxy
     group system
     disabled
 
-service ifaad /system/bin/ifaad
-    class late_start
-    user  system
-    group system
-
 on property:init.svc.per_mgr=running
     start per_proxy
 
@@ -370,7 +341,35 @@ on boot
     write /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/fw_name PR1702898-s3528t_00260005_00380008.img
     write /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/update_fw 1
 
+on boot
+    chown system system /sys/class/leds/red/blink
+    chown system system /sys/class/leds/red/breath
+    chown system system /sys/class/leds/red/delay_on
+    chown system system /sys/class/leds/red/delay_off
+    chown system system /sys/class/leds/green/blink
+    chown system system /sys/class/leds/green/breath
+    chown system system /sys/class/leds/green/delay_on
+    chown system system /sys/class/leds/green/delay_off
+    chown system system /sys/class/leds/blue/blink
+    chown system system /sys/class/leds/blue/breath
+    chown system system /sys/class/leds/blue/delay_on
+    chown system system /sys/class/leds/blue/delay_off
+
 service vendor.tlocd /vendor/bin/tloc_daemon
     class late_start
     user system
     group drmrpc gps net_raw
+
+on boot
+    chown system system /sys/class/leds/red/blink
+    chown system system /sys/class/leds/red/breath
+    chown system system /sys/class/leds/red/delay_on
+    chown system system /sys/class/leds/red/delay_off
+    chown system system /sys/class/leds/green/blink
+    chown system system /sys/class/leds/green/breath
+    chown system system /sys/class/leds/green/delay_on
+    chown system system /sys/class/leds/green/delay_off
+    chown system system /sys/class/leds/blue/blink
+    chown system system /sys/class/leds/blue/breath
+    chown system system /sys/class/leds/blue/delay_on
+    chown system system /sys/class/leds/blue/delay_off

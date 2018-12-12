@@ -4,8 +4,8 @@
    "target_path": "kernel/smartisan/msm8953"
   },
   {
-   "repository": "android_vendor_smartisan_oscar",
-   "target_path": "vendor/smartisan/oscar"
+   "repository": "android_vendor_smartisan_msm8953-common",
+   "target_path": "vendor/smartisan/msm8953-common"
   },
   {
     "repository": "android_device_qcom_common",

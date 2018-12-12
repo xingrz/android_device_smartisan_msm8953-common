@@ -1,0 +1,19 @@
+on post-fs-data
+    mkdir /data/misc/camera/raw/ 0770 camera camera
+    mkdir /data/misc/wapi_certificate 0770 system wifi
+
+on boot
+    # Wifi firmware reload path
+    chown wifi wifi /sys/module/wlan/parameters/fwpath
+
+    mkdir /dev/cpuset/dex2oat
+    write /dev/cpuset/dex2oat/cpus 0-4
+    write /dev/cpuset/dex2oat/mems 0
+    chown system system /dev/cpuset/dex2oat
+    chown system system /dev/cpuset/dex2oat/tasks
+    chmod 0666 /dev/cpuset/dex2oat/tasks
+
+service ifaad /system/bin/ifaad
+    class late_start
+    user  system
+    group system

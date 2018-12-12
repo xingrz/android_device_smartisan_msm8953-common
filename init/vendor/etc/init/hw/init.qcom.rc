@@ -28,6 +28,8 @@
 import /vendor/etc/init/hw/init.qcom.usb.rc
 import /vendor/etc/init/hw/init.msm.usb.configfs.rc
 import /vendor/etc/init/hw/init.target.rc
+import /vendor/etc/init/hw/init.target.common.rc
+import /vendor/etc/init/hw/init.target.device.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
@@ -59,7 +61,7 @@ on early-boot
     # Allow subsystem (modem etc) debugging
     write /sys/kernel/boot_adsp/boot 1
     write /sys/kernel/boot_cdsp/boot 1
-    #write /sys/kernel/boot_slpi/boot 1
+    write /sys/kernel/boot_slpi/boot 1
     exec u:r:qti_init_shell:s0 -- /vendor/bin/init.qcom.early_boot.sh
     chown root audio /sys/kernel/boot_adsp/boot
 
@@ -173,13 +175,39 @@ on boot
     chown wifi wifi /sys/class/net/bond0/bonding/queue_id
 
     # Allow access to emmc rawdump block partition and dload sysfs node
+    chown root system /dev/block/bootdevice/by-name/rawdump -p /dev/block/
+    chmod 0660 /dev/block/bootdevice/by-name/rawdump -p /dev/block/
     chown root system /sys/kernel/dload/emmc_dload
     chmod 0660 /sys/kernel/dload/emmc_dload
+    chown root system /dev/block/bootdevice/by-name/ramdump -p /dev/block/
+    chmod 0660 /dev/block/bootdevice/by-name/ramdump -p /dev/block/
     chown root system /sys/kernel/dload/dload_mode
     chmod 0660 /sys/kernel/dload/dload_mode
 
-    #ddr_freq dynamic change interface
-    chown system system /sys/module/kernel/ddr_freq_en/ddr_freq_en
+    chown system system /sys/class/backlight/panel0-backlight/brightness
+    chown system system /sys/class/backlight/panel0-backlight/max_brightness
+
+    # Allow access to sensors device attributes
+    chown system system /sys/class/sensors/MPU6050-accel/enable
+    chown system system /sys/class/sensors/MPU6050-accel/poll_delay
+    chown system system /sys/class/sensors/MPU6050-gyro/enable
+    chown system system /sys/class/sensors/MPU6050-gyro/poll_delay
+    chown system system /sys/class/sensors/apds9930-light/enable
+    chown system system /sys/class/sensors/apds9930-light/poll_delay
+    chown system system /sys/class/sensors/apds9930-proximity/enable
+    chown system system /sys/class/sensors/apds9930-proximity/poll_delay
+    chown system system /sys/class/sensors/compass/enable
+    chown system system /sys/class/sensors/compass/poll_delay
+    chown system system /sys/class/sensors/bma2x2-accel/enable
+    chown system system /sys/class/sensors/bma2x2-accel/poll_delay
+    chown system system /sys/class/sensors/ltr553-light/enable
+    chown system system /sys/class/sensors/ltr553-light/poll_delay
+    chown system system /sys/class/sensors/ltr553-proximity/enable
+    chown system system /sys/class/sensors/ltr553-proximity/poll_delay
+    chown system system /sys/class/sensors/ap3426-light/enable
+    chown system system /sys/class/sensors/ap3426-light/poll_delay
+    chown system system /sys/class/sensors/ap3426-proximity/enable
+    chown system system /sys/class/sensors/ap3426-proximity/poll_delay
 
     # Create directory used for display
     mkdir /persist/display 0770 system graphics
@@ -227,7 +255,6 @@ on post-fs-data
 
     #Create folder for mm-qcamera-daemon
     mkdir /data/misc/camera 0770 camera camera
-    mkdir /data/misc/camera/raw/ 0770 camera camera
 
     mkdir /data/media 0770 media_rw media_rw
     chown media_rw media_rw /data/media
@@ -292,7 +319,7 @@ on post-fs-data
     # We chown/chmod /persist again so because mount is run as root + defaults
     chown root system /persist
     chmod 0771 /persist
-    chown system system /system/etc/wifi/WCNSS_qcom_wlan_nv.bin
+    chown system system /persist/WCNSS_qcom_wlan_nv.bin
     chmod 0664 /sys/devices/platform/msm_sdcc.1/polling
     chmod 0664 /sys/devices/platform/msm_sdcc.2/polling
     chmod 0664 /sys/devices/platform/msm_sdcc.3/polling
@@ -374,9 +401,6 @@ on post-fs-data
     chown radio radio /data/vendor/radio/db_check_done
     chmod 0660 /data/vendor/radio/db_check_done
 
-    #wanjl set adsp subsys restart level
-    write /sys/bus/msm_subsys/devices/subsys2/restart_level SYSTEM
-
     # qti-logkit data
     mkdir /data/vendor/qti-logkit/ 0771 system system
     mkdir /data/vendor/qti-logkit/shared-privileged/ 2770 system system
@@ -392,15 +416,6 @@ on post-fs-data
     # set aggressive read ahead for dm-0 and dm-1 during boot up
     write /sys/block/dm-0/queue/read_ahead_kb 2048
     write /sys/block/dm-1/queue/read_ahead_kb 2048
-
-    # create QDMA related dirs
-    mkdir /data/misc/qdmastats 0700 system system
-    mkdir /data/misc/qdma 0770 system system
-    mkdir /data/misc/logd 0700 logd log
-    symlink /data/misc/logd /data/logs
-
-    # WAPI
-    mkdir /data/misc/wapi_certificate 0770 system wifi
 
     # Create vpp directory
     mkdir /data/vendor/vpp 0770 media media
