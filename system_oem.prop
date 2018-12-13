@@ -60,21 +60,17 @@ ro.opengles.version=196610
 
 # Radio
 keyguard.no_require_sim=true
-persist.nfc.smartcard.config=SIM1,SIM2,eSE1
 persist.radio.add_power_save=1
 persist.radio.calls.on.ims=true
-persist.radio.facnotsup_as_nonw=1
 persist.radio.force_on_dc=true
-persist.radio.ignore_dom_time=5
 persist.radio.jbims=1
 persist.radio.lte_vrte_ltd=1
+persist.radio.multisim.config=dsds
 persist.radio.rat_on=combine
 persist.radio.redir_party_num=0
-persist.radio.report_codec=1
 persist.radio.sglte.eons_domain=ps
 persist.radio.start_ota_daemon=1
 persist.radio.vrte_logic=1
 ro.com.android.dataroaming=false
 ro.radio.apn.protocal=IPV4V6
 ro.ril.ecclist=911,112,000,08,110,118,119,999,120,122
-ro.telephony.default_network=22,22
