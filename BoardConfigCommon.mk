@@ -216,6 +216,7 @@ TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/recovery/root/recovery.fstab
 
 # RIL
 TARGET_RIL_VARIANT := caf
+TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
 
 # Releasetools
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_smartisan
