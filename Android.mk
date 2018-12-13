@@ -85,4 +85,14 @@ $(WCNSS_INI_SYMLINK): $(LOCAL_INSTALLED_MODULE)
 	@rm -rf $@
 	$(hide) ln -sf /data/misc/wifi/$(notdir $@) $@
 
+WCNSS_MAC_BINS := wlan_mac.bin wlan_random_mac.bin
+WCNSS_MAC_SYMLINK := $(addprefix $(TARGET_OUT_VENDOR)/firmware/wlan/prima/,$(notdir $(WCNSS_MAC_BINS)))
+$(WCNSS_MAC_SYMLINK): $(LOCAL_INSTALLED_MODULE)
+	@echo "WCNSS MAC bin link: $@"
+	@mkdir -p $(dir $@)
+	@rm -f $@
+	$(hide) ln -sf /persist/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(WCNSS_INI_SYMLINK) $(WCNSS_MAC_SYMLINK)
+
 endif
