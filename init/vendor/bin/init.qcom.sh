@@ -408,13 +408,13 @@ case "$target" in
                                     setprop qemu.hw.mainkeys 0
                                     ;;
                        "MTP")
-                                    setprop qemu.hw.mainkeys 0
+                                    # setprop qemu.hw.mainkeys 0
                                     ;;
                        "RCM")
                                     setprop qemu.hw.mainkeys 0
                                     ;;
                        "QRD")
-                                    setprop qemu.hw.mainkeys 0
+                                    # setprop qemu.hw.mainkeys 0
                                     ;;
                   esac
                   ;;
