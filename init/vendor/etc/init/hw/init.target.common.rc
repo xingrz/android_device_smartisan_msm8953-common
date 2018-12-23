@@ -13,6 +13,12 @@ on boot
     chown system system /dev/cpuset/dex2oat/tasks
     chmod 0666 /dev/cpuset/dex2oat/tasks
 
+    # Vibrator
+    chown system system /sys/class/timed_output/vibrator/vtg_default
+    chown system system /sys/class/timed_output/vibrator/vtg_level
+    chown system system /sys/class/timed_output/vibrator/vtg_max
+    chown system system /sys/class/timed_output/vibrator/vtg_min
+
 service ifaad /system/bin/ifaad
     class late_start
     user  system
