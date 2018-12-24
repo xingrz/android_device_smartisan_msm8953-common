@@ -391,9 +391,17 @@ vendor/lib64/vendor.qti.voiceprint@1.0.so
 # Media
 -vendor/lib/libgpustats.so
 -vendor/lib64/libgpustats.so
+lib/extractors/libmmparser.so
+lib/libFileMux.so
+lib/libOmxMux.so
 lib/libmmosal.so
+lib/libmmparser_lite.so
 lib/vendor.qti.hardware.vpp@1.1.so
+lib64/extractors/libmmparser.so
+lib64/libFileMux.so
+lib64/libOmxMux.so
 lib64/libmmosal.so
+lib64/libmmparser_lite.so
 lib64/vendor.qti.hardware.vpp@1.1.so
 vendor/lib/libAlacSwDec.so
 vendor/lib/libApeSwDec.so
@@ -796,3 +804,31 @@ vendor/lib64/mediadrm/libwvdrmengine.so
 # Wi-Fi
 vendor/bin/cnss-daemon
 vendor/bin/cnss_diag
+
+# Wi-Fi Display
+-framework/WfdCommon.jar
+-priv-app/WfdService/WfdService.apk
+bin/wfdservice
+etc/init/wfdservice.rc
+etc/wfdconfig.xml
+etc/wfdconfigsink.xml
+lib/com.qualcomm.qti.wifidisplayhal@1.0.so
+lib/libwfdavenhancements.so
+lib/libwfdclient.so
+lib/libwfdcodecv4l2.so
+lib/libwfdcommonutils.so
+lib/libwfdconfigutils.so
+lib/libwfdmminterface.so
+lib/libwfdmmsink.so
+lib/libwfdmmsrc.so
+lib/libwfdnative.so
+lib/libwfdrtsp.so
+lib/libwfdservice.so
+lib/libwfdsm.so
+lib/libwfduibcinterface.so
+lib/libwfduibcsink.so
+lib/libwfduibcsinkinterface.so
+lib/libwfduibcsrc.so
+lib/libwfduibcsrcinterface.so
+lib64/libwfdclient.so
+lib64/libwfdnative.so
