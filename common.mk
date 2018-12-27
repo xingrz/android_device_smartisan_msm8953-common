@@ -310,13 +310,6 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl \
     android.hardware.sensors@1.0-service
 
-# SOTER (Fingerprint support for WeChat Payment)
-PRODUCT_PACKAGES += \
-    soter
-
-PRODUCT_BOOT_JARS += \
-    soter
-
 # Telephony
 PRODUCT_PACKAGES += \
     telephony-ext
