@@ -40,6 +40,9 @@ ro.bt.bdaddr_path=/mnt/vendor/persist/bd_addr.txt
 ro.qualcomm.cabl=0
 ro.vendor.display.cabl=0
 
+# Camera
+persist.camera.HAL3.enabled=1
+
 # Display
 qemu.hw.mainkeys=1
 ro.sf.lcd_density=400
