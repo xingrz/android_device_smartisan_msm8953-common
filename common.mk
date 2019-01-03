@@ -89,9 +89,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    android.hardware.audio@2.0-impl \
+    android.hardware.audio@2.0-impl:32 \
     android.hardware.audio@2.0-service \
-    android.hardware.audio.effect@2.0-impl \
+    android.hardware.audio.effect@4.0-impl:32 \
     audio.a2dp.default \
     audio.r_submix.default \
     audio.usb.default \
@@ -123,14 +123,13 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth@1.0-impl \
-    android.hardware.bluetooth@1.0-service \
     android.hardware.bluetooth.a2dp@1.0-impl \
-    libbt-vendor \
     libbthost_if
 
+# Camera
 PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.4-impl \
+    android.frameworks.displayservice@1.0_32 \
+    android.hardware.camera.provider@2.4-impl:32 \
     android.hardware.camera.provider@2.4-service \
     vendor.qti.hardware.camera.device@1.0
 
@@ -146,16 +145,16 @@ PRODUCT_PACKAGES += \
 
 # Display
 PRODUCT_PACKAGES += \
-    android.hardware.configstore@1.0-service \
-    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.configstore@1.1-service \
+    android.hardware.graphics.allocator@2.0-impl:64 \
     android.hardware.graphics.allocator@2.0-service \
-    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.graphics.composer@2.1-impl:64 \
     android.hardware.graphics.composer@2.1-service \
     android.hardware.graphics.mapper@2.0-impl \
     android.hardware.memtrack@1.0-impl \
     android.hardware.memtrack@1.0-service \ \
-    vendor.display.config@1.0 \
-    vendor.display.config@1.0_vendor \
+    vendor.display.config@1.1 \
+    vendor.display.config@1.1_vendor \
     copybit.msm8953 \
     gralloc.msm8953 \
     hwcomposer.msm8953 \
@@ -204,9 +203,7 @@ PRODUCT_COPY_FILES += \
 
 # Healthd
 PRODUCT_PACKAGES += \
-    android.hardware.health@1.0-convert \
-    android.hardware.health@1.0-impl \
-    android.hardware.health@1.0-service
+    android.hardware.health@2.0-service
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -256,7 +253,7 @@ PRODUCT_COPY_FILES += \
 
 # Netutils
 PRODUCT_PACKAGES += \
-    android.system.net.netd@1.0 \
+    android.system.net.netd@1.1 \
     libandroid_net \
     netutils-wrapper-1.0
 
@@ -299,6 +296,9 @@ PRODUCT_PACKAGES += \
 
 # RIL
 PRODUCT_PACKAGES += \
+    android.hardware.radio@1.2 \
+    android.hardware.radio.config@1.0 \
+    android.hardware.secure_element@1.0 \
     qti-telephony-common \
     ims-ext-common \
     librmnetctl \
@@ -307,7 +307,7 @@ PRODUCT_PACKAGES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@1.0-impl \
+    android.hardware.sensors@1.0-impl:64 \
     android.hardware.sensors@1.0-service
 
 # Telephony
