@@ -67,9 +67,6 @@ TARGET_KERNEL_SOURCE := kernel/smartisan/msm8953
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
 
-# ANT+
-BOARD_ANT_WIRELESS_DEVICE := "qualcomm-uart"
-
 # Audio
 BOARD_USES_ALSA_AUDIO := true
 BOARD_SUPPORTS_SOUND_TRIGGER := true
