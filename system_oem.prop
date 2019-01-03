@@ -38,6 +38,7 @@ ro.bt.bdaddr_path=/persist/bd_addr.txt
 
 # CABL
 ro.qualcomm.cabl=0
+ro.vendor.display.cabl=0
 
 # Display
 qemu.hw.mainkeys=1
