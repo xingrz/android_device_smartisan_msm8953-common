@@ -1,4 +1,5 @@
 on post-fs-data
+    mkdir /data/misc/camera 0770 camera camera
     mkdir /data/misc/camera/raw/ 0770 camera camera
     mkdir /data/misc/wapi_certificate 0770 system wifi
 
