@@ -34,7 +34,7 @@ vendor.voice.record.conc.disabled=false
 vendor.voice.voip.conc.disabled=true
 
 # Bluetooth
-ro.bt.bdaddr_path=/mnt/vendor/persist/bd_addr.txt
+ro.vendor.bt.bdaddr_path=/mnt/vendor/persist/bd_addr.txt
 
 # CABL
 ro.qualcomm.cabl=0
