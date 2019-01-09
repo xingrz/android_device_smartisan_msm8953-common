@@ -179,7 +179,8 @@ PRODUCT_PACKAGES += \
     libgnsspps \
     libgps.utils \
     libloc_core \
-    liblocation_api
+    liblocation_api \
+    libsensorndkbridge
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/apdr.conf:$(TARGET_COPY_OUT_VENDOR)/etc/apdr.conf \
