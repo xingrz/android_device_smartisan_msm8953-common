@@ -35,6 +35,14 @@ on boot
     chown system system /sys/class/timed_output/vibrator/vtg_max
     chown system system /sys/class/timed_output/vibrator/vtg_min
 
+    # Keypad
+    chown system system /proc/keypad/volume_up
+    chown system system /proc/keypad/volume_down
+    chown system system /proc/keypad/home_touch
+    chown system system /proc/keypad/home_press
+    chown system system /proc/keypad/power
+    chown system system /proc/keypad/shortcuts
+
 service ifaad /system/bin/ifaad
     class late_start
     user  system
