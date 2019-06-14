@@ -37,17 +37,21 @@ public class KeyHandler implements DeviceKeyHandler {
     private static final int KEY_HOME_TOUCH_GF3206 = 1;
     private static final int KEY_HOME_TOUCH_GF3208 = 2;
     private static final int KEY_HOME_TOUCH_IDEX = 3;
+    private static final int KEY_HOME_PRESS = 4;
 
     private final KeyInfo[] keys = new KeyInfo[] {
         new KeyInfo("home_touch", "betterlife-blfp"),
         new KeyInfo("home_touch", "gf3206"),
         new KeyInfo("home_touch", "gf3208"),
         new KeyInfo("home_touch", "ix_btp"),
+        new KeyInfo("home_press", "gpio-keys"),
     };
 
+    private final int pressTouchThrottle = 200;
     private final int doubleTapTimeout = ViewConfiguration.getDoubleTapTimeout();
 
-    private long lastTapMillis = 0;
+    private long lastTouchMillis = 0;
+    private long lastPressMillis = 0;
 
     public KeyHandler(Context context) {
     }
@@ -55,6 +59,7 @@ public class KeyHandler implements DeviceKeyHandler {
     public KeyEvent handleKeyEvent(KeyEvent event) {
         boolean handled = false;
         handled = handleHomeTouchKeyEvent(event) || handled;
+        handled = handleHomePressKeyEvent(event) || handled;
         return handled ? null : event;
     }
 
@@ -79,14 +84,37 @@ public class KeyHandler implements DeviceKeyHandler {
         }
 
         final long now = SystemClock.uptimeMillis();
-        if (now - lastTapMillis < doubleTapTimeout) {
+
+        // Sometimes the finger of the user leaves the sensor after the
+        // button is released. Ignore touch events followed the last press.
+        if (now - lastPressMillis < pressTouchThrottle) {
+            return true;
+        }
+
+        if (now - lastTouchMillis < doubleTapTimeout) {
             injectKey(KeyEvent.KEYCODE_APP_SWITCH);
         } else {
             injectKey(matchedKey.keyCode);
         }
 
-        lastTapMillis = now;
+        lastTouchMillis = now;
         return true;
+    }
+
+    private boolean handleHomePressKeyEvent(KeyEvent event) {
+        final KeyInfo keyHomePress = keys[KEY_HOME_PRESS];
+
+        if (!keyHomePress.match(event)) {
+            return false;
+        }
+
+        if (event.getAction() == KeyEvent.ACTION_UP) {
+            lastPressMillis = SystemClock.uptimeMillis();
+        }
+
+        // Always return false to pass this event back to the framework
+        // since we just want to record the `lastPressMillis` here.
+        return false;
     }
 
     private String getDeviceName(KeyEvent event) {
