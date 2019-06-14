@@ -319,6 +319,10 @@ PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0-service \
     thermal.msm8953
 
+# Touch
+PRODUCT_PACKAGES += \
+    vendor.mokee.touch@1.0-service.smartisan
+
 # USB
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service \
