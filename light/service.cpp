@@ -1,6 +1,6 @@
 /*
  * Copyright 2016 The Android Open Source Project
- * Copyright 2018 The MoKee Open Source Project
+ * Copyright 2018-2019 The MoKee Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,6 +33,9 @@ using android::hardware::light::V2_0::implementation::Light;
 
 const static std::string kLcdBacklightPath = "/sys/class/leds/lcd-backlight/brightness";
 const static std::string kLcdMaxBacklightPath = "/sys/class/leds/lcd-backlight/max_brightness";
+const static std::string kRedLedPath = "/sys/class/leds/red/brightness";
+const static std::string kRedBlinkPath = "/sys/class/leds/red/blink";
+const static std::string kGreenLedPath = "/sys/class/leds/green/brightness";
 const static std::string kBlueLedPath = "/sys/class/leds/blue/brightness";
 const static std::string kBlueDutyPctsPath = "/sys/class/leds/blue/duty_pcts";
 const static std::string kBlueStartIdxPath = "/sys/class/leds/blue/start_idx";
@@ -58,6 +61,27 @@ int main() {
         return -errno;
     } else {
         lcdMaxBacklight >> lcdMaxBrightness;
+    }
+
+    std::ofstream redLed(kRedLedPath);
+    if (!redLed) {
+        LOG(ERROR) << "Failed to open " << kRedLedPath << ", error=" << errno
+                   << " (" << strerror(errno) << ")";
+        return -errno;
+    }
+
+    std::ofstream redBlink(kRedBlinkPath);
+    if (!redBlink) {
+        LOG(ERROR) << "Failed to open " << kRedBlinkPath << ", error=" << errno
+                   << " (" << strerror(errno) << ")";
+        return -errno;
+    }
+
+    std::ofstream greenLed(kGreenLedPath);
+    if (!greenLed) {
+        LOG(ERROR) << "Failed to open " << kGreenLedPath << ", error=" << errno
+                   << " (" << strerror(errno) << ")";
+        return -errno;
     }
 
     std::ofstream blueLed(kBlueLedPath);
@@ -111,13 +135,13 @@ int main() {
 
     android::sp<ILight> service = new Light(
             {std::move(lcdBacklight), lcdMaxBrightness},
-            std::move(blueLed),
+            std::move(redLed), std::move(greenLed), std::move(blueLed),
             std::move(blueDutyPcts),
             std::move(blueStartIdx),
             std::move(bluePauseLo),
             std::move(bluePauseHi),
             std::move(blueRampStepMs),
-            std::move(blueBlink));
+            std::move(redBlink), std::move(blueBlink));
 
     configureRpcThreadpool(1, true);
 

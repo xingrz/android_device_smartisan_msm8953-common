@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2016 The Android Open Source Project
- * Copyright (C) 2018 The MoKee Open Source Project
+ * Copyright (C) 2018-2019 The MoKee Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,13 +32,13 @@ namespace implementation {
 
 struct Light : public ILight {
     Light(std::pair<std::ofstream, uint32_t>&& lcd_backlight,
-          std::ofstream&& blue_led,
+          std::ofstream&& red_led, std::ofstream&& green_led, std::ofstream&& blue_led,
           std::ofstream&& blue_duty_pcts,
           std::ofstream&& blue_start_idx,
           std::ofstream&& blue_pause_lo,
           std::ofstream&& blue_pause_hi,
           std::ofstream&& blue_ramp_step_ms,
-          std::ofstream&& blue_blink);
+          std::ofstream&& red_blink, std::ofstream&& blue_blink);
 
     // Methods from ::android::hardware::light::V2_0::ILight follow.
     Return<Status> setLight(Type type, const LightState& state) override;
@@ -50,15 +50,19 @@ struct Light : public ILight {
     void setBatteryLight(const LightState& state);
     void setNotificationLight(const LightState& state);
     void handleSpeakerBatteryLightLocked();
-    void setSpeakerLightLocked(const LightState& state);
+    void setNotificationLightLocked(const LightState& state);
+    void setBatteryLightLocked(const LightState& state);
 
     std::pair<std::ofstream, uint32_t> mLcdBacklight;
+    std::ofstream mRedLed;
+    std::ofstream mGreenLed;
     std::ofstream mBlueLed;
     std::ofstream mBlueDutyPcts;
     std::ofstream mBlueStartIdx;
     std::ofstream mBluePauseLo;
     std::ofstream mBluePauseHi;
     std::ofstream mBlueRampStepMs;
+    std::ofstream mRedBlink;
     std::ofstream mBlueBlink;
 
     LightState mAttentionState;
