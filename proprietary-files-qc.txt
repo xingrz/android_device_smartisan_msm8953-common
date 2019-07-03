@@ -52,6 +52,8 @@ vendor/lib64/libbtnv.so
 vendor/lib/com.qualcomm.qti.bluetooth_audio@1.0.so
 vendor/lib/vendor.qti.hardware.fm@1.0.so
 vendor/lib64/com.qualcomm.qti.bluetooth_audio@1.0.so
+vendor/lib64/libaptXHD_encoder.so|76eb03998f9b4f98029a4408076685892726e45a
+vendor/lib64/libaptX_encoder.so|a407a92a6eb467886c3970629ebcab4db95b7600
 vendor/lib64/vendor.qti.hardware.fm@1.0.so
 
 # CNE
