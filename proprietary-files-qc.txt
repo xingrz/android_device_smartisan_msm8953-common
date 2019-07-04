@@ -772,13 +772,6 @@ vendor/lib64/sensor_calibrate.so
 vendor/lib64/sensors.ssc.so
 vendor/lib64/vendor.qti.hardware.sensorscalibrate@1.0.so
 
-# Thermal
--vendor/lib/libthermalclient.so
--vendor/lib64/libthermalclient.so
-vendor/bin/thermal-engine
-vendor/etc/thermal-engine.conf
-vendor/lib64/libthermalioctl.so
-
 # Time services
 -vendor/app/TimeService/TimeService.apk
 -vendor/lib/libtime_genoff.so

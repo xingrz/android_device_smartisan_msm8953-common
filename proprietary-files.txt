@@ -32,5 +32,11 @@ lib64/libifaa_jni.so
 # USB firmware
 etc/firmware/ice40.bin:vendor/firmware/ice40.bin
 
+# Thermal
+vendor/bin/thermal-engine
+vendor/lib/libthermalclient.so
+vendor/lib64/libthermalclient.so
+vendor/lib64/libthermalioctl.so
+
 # Wi-Fi
 etc/firmware/wlan/prima/WCNSS_cfg.dat:vendor/firmware/wlan/prima/WCNSS_cfg.dat

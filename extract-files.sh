@@ -56,3 +56,6 @@ fi
 "$MY_DIR"/setup-makefiles.sh
 
 BLOB_ROOT="$MK_ROOT"/vendor/"$VENDOR"/"$DEVICE_COMMON"/proprietary
+
+# Thermal
+sed -i 's|/system/etc/|/vendor/etc/|g' $BLOB_ROOT/vendor/bin/thermal-engine
