@@ -23,9 +23,6 @@
 
 COMMON_PATH := device/smartisan/msm8953-common
 
-# SDClang configuration
-TARGET_USE_SDCLANG := true
-
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := msm8953
 TARGET_NO_BOOTLOADER := true
