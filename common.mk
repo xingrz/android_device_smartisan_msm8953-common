@@ -203,10 +203,6 @@ PRODUCT_PACKAGES += \
     android.hidl.manager@1.0 \
     android.hidl.manager@1.0-java
 
-# IFAA (Fingerprint support for Alipay)
-PRODUCT_BOOT_JARS += \
-    ifaa_fw
-
 # IPv6
 PRODUCT_PACKAGES += \
     ebtables \
