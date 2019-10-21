@@ -237,7 +237,7 @@ vendor/lib/hw/gatekeeper.msm8953.so
 vendor/lib64/hw/gatekeeper.msm8953.so
 
 # GPS
--priv-app/com.qualcomm.location/com.qualcomm.location.apk
+# -priv-app/com.qualcomm.location/com.qualcomm.location.apk
 -vendor/lib64/libloc_api_v02.so
 etc/permissions/com.qti.location.sdk.xml
 etc/permissions/com.qualcomm.location.xml
